@@ -2,7 +2,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { FontAwesome } from '@expo/vector-icons'; 
 import { useState } from "react";
 
-const Bar = ({setOpen}) => {
+const Bar = ({setOpen,setPopular,setTopRated,setUpcoming,Popular1,TopRated1,Upcoming1}) => {
 
     const [style1,setStyle1]=useState('rounded-full p-1 px-4 bg-[#FF692B]')
     const [style2,setStyle2]=useState('rounded-full p-1 px-4 ')
@@ -15,6 +15,7 @@ const Bar = ({setOpen}) => {
             setStyle2('rounded-full p-1 px-4 ')
             setStyle3('rounded-full p-1 px-4 ')
             setStyle4('rounded-full p-1 px-4 ')
+            
 
         }
         else if(e===2)

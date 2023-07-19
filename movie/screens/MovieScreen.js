@@ -7,6 +7,10 @@ import { useEffect, useState } from "react";
 
 const Movie = ({navigation}) => {
     const [data , setData] = useState(null)
+    const [Credit , setCredit] = useState(null)
+    const [Similair , setSimilair] = useState(null)
+    const [Reviews , setReviews] = useState(null)
+
    useEffect(()=>{
     const options = {
         method: 'GET',
@@ -21,10 +25,24 @@ const Movie = ({navigation}) => {
         .then(response => setData(response))
         .catch(err => console.error(err));
 
-        fetch('https://api.themoviedb.org/3/movie/667538/credits', options)
+        fetch('https://api.themoviedb.org/3/movie/'+navigation.getParam('id')+'/credits', options)
         .then(response => response.json())
-        .then(response => console.log(response))
+        .then(response => setCredit(response.cast))
         .catch(err => console.error(err));
+        
+        fetch('https://api.themoviedb.org/3/movie/'+navigation.getParam('id')+'/similar', options)
+        .then(response => response.json())
+        .then(response => setSimilair(response.results))
+        .catch(err => console.error(err));
+
+        fetch('https://api.themoviedb.org/3/movie/'+navigation.getParam('id')+'/reviews', options)
+        .then(response => response.json())
+        .then(response => {setReviews(response.results)
+            
+        }
+        )
+        .catch(err => console.error(err));
+
    },[])
     
 
@@ -32,7 +50,7 @@ const Movie = ({navigation}) => {
     return ( 
     <View className="flex-1 justify-start items-center pt-4 bg-[#1F1C2C] ">
         <StatusBar style="" />
-       {data ? <ScrollView>
+       {(data && Credit && Similair && Reviews) ? <ScrollView>
             <Image className="w-[400px] h-[300px] rounded-xl" source={{uri : "https://image.tmdb.org/t/p/w500"+data.backdrop_path}}/>
             <Text className=" text-center text-white text-[20px] font-bold pt-4">{data.original_title}</Text>
             <View className="flex justify-center items-center">
@@ -44,30 +62,28 @@ const Movie = ({navigation}) => {
             
             <Text className="mt-4 self-start ml-6 text-white text-[18px] font-bold">Star cast</Text>
             <ScrollView horizontal={true} className=" pt-4">
-                <ActorCard />
-                <ActorCard />
-                <ActorCard />
-                <ActorCard />
-                <ActorCard />
+                
+                {Credit.map((e)=>{
+                    return(<ActorCard data={e} key={e.id}/>)
+                })}
+                
+                
             </ScrollView>
 
             <Text className="mt-6 self-start ml-6 text-white text-[18px] font-bold">Similair</Text>
             <ScrollView horizontal={true} className=" pt-4">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+            {Similair.map((elem)=>{
+                return(<Card navigation={navigation}  data={elem} />)
+            })}
             </ScrollView>
 
             <Text className="mt-6 self-start ml-6 text-white text-[18px] font-bold ">Reviews</Text>
-            <ScrollView horizontal={true} className=" pt-4 mb-4">
-                <ReviewCard />
-                <ReviewCard />
-                <ReviewCard />
-                <ReviewCard />
-                <ReviewCard />
+            <ScrollView horizontal={true} className=" pt-4 mb-4  ">
+            {Reviews.map((elem)=>{
+                return(<ReviewCard  data={elem}/>)
+            })}
+                
+                
                 
             </ScrollView>
            

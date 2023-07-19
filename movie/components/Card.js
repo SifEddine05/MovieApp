@@ -6,7 +6,7 @@ const Card = ({navigation,data}) => {
     return ( 
       <View>
         {data ? <TouchableOpacity className="mx-4 " onPress={()=>{navigation.push('Movie',{id:data.id})}}>
-          <Image className="w-[150px] h-[200px] rounded-xl" source={{uri : "https://image.tmdb.org/t/p/w500"+data.poster_path}}/>
+         {data.poster_path ? <Image className="w-[150px] h-[200px] rounded-xl" source={{uri : "https://image.tmdb.org/t/p/w500"+data.poster_path}}  /> : <AntDesign name="user" size={30} color="white" /> }
           <View className=" bg-slate-400 rounded-lg bg-opacity-25 p-1 flex justify-start items-center flex-row" style={{position: 'absolute',
                right:     3,
                top:      3,}}>
