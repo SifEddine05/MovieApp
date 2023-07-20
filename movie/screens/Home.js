@@ -7,10 +7,13 @@ import { useEffect, useState } from "react";
 import { FontAwesome } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
 import Search from "../components/Search";
+import Card from "../components/Card";
 const Home = ({navigation}) => {
     const [open,setOpen]=useState(false)
     const [Popular,setPopular]=useState(null)
     const [Popular1,setPopular1]=useState(null)
+
+    const [Movies1,setMovies1]=useState(null)
 
     const [TopRated,setTopRated]=useState(null)
     const [TopRated1,setTopRated1]=useState(null)
@@ -27,25 +30,32 @@ const Home = ({navigation}) => {
             }
           };
           
+
           fetch('https://api.themoviedb.org/3/movie/popular', options)
             .then(response => response.json())
             .then(response => {setPopular(response)
-                setPopular1(response)}
+                }
             )
             .catch(err => console.error(err));
            
             fetch('https://api.themoviedb.org/3/movie/top_rated', options)
             .then(response => response.json())
             .then(response => {setTopRated(response)
-                          setTopRated1(response)    
+                              
             })
             .catch(err => console.error(err));
 
             fetch('https://api.themoviedb.org/3/movie/upcoming', options)
             .then(response => response.json())
             .then(response => {setUpcoming(response)
-                              setUpcoming1(response)
+                             
             })
+            .catch(err => console.error(err));
+
+
+            fetch('https://api.themoviedb.org/3/search/movie?query=robot', options)
+            .then(response => response.json())
+            .then(response =>setMovies1(response) )
             .catch(err => console.error(err));
         
     },[])
@@ -67,12 +77,21 @@ const Home = ({navigation}) => {
                             <FontAwesome name="search" size={28} color="white"  />
                         </TouchableOpacity>
                     </View>
+                    <ScrollView horizontal={true}>
+                     { Movies1 ? <View>
+                                    {Movies1.results.map((elem)=>{
+                                    return(<Card navigation={navigation}  data={elem} />)
+                                })}  
+                                </View> : <Text className="text-white">Loading ... </Text> }
+                    
+                    </ScrollView> 
                 </View>
-                </TouchableWithoutFeedback>
+               
+            </TouchableWithoutFeedback>
         </Modal>  */}
 
-       <Search  className="mt-[80px]"/>
-       {/* <Bar setOpen={setOpen} setPopular={setPopular} setTopRated={TopRated} setUpcoming={setUpcoming} Popular1={Popular1} TopRated1={TopRated1} Upcoming1={Upcoming1}/> */}
+       <Search  className="mt-[80px]" setOpen={setOpen} open={open}/>
+       {/* <Bar setOpen={setOpen} /> */}
        <ScrollView className="mb-4 mt-8">
         <Hero />
        {Popular ? <Movies key={1} navigation={navigation} data={Popular} title="Popular"/> : <Text className="text-white">Loading ...</Text>}
