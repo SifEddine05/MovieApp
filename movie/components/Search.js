@@ -1,4 +1,4 @@
-import { Image, ScrollView,   Keyboard ,StatusBar, Text, View , Modal, TextInput, TouchableOpacity, TouchableWithoutFeedback} from "react-native";
+import { Image, ScrollView,   Keyboard ,StatusBar, Text, View , Modal, TextInput, TouchableOpacity, TouchableWithoutFeedback, Alert} from "react-native";
 import { FontAwesome } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
 import { useState } from "react";
@@ -9,6 +9,7 @@ const Search = ({setOpen , open,setMovies1}) => {
    const handleCancel =()=>{
     setOpen(false)
     setMovies1(null)
+    setSrhValue('')
    }
     const handleSearch = ()=>{
         setOpen(true)
@@ -25,7 +26,7 @@ const Search = ({setOpen , open,setMovies1}) => {
         .then(response => response.json())
         .then(response =>{setMovies1(response) 
         })
-        .catch(err => console.error(err));
+        .catch(err =>console.log(err));
         
     }
     return ( <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -36,7 +37,7 @@ const Search = ({setOpen , open,setMovies1}) => {
                             <AntDesign name="closecircle" size={24} color="white" />
                         </View>
                     </TouchableOpacity>  }
-                <TextInput className="bg-slate-300 rounded-xl w-3/4  p-2 mr-6"  onChangeText={(e)=>{setSrhValue(e)}}/> 
+                <TextInput className="bg-slate-300 rounded-xl w-3/4  p-2 mr-6"  value={SrhValue} onChangeText={(e)=>{setSrhValue(e)}}/> 
                 <TouchableOpacity onPress={handleSearch} > 
                     <FontAwesome name="search" size={28} color="white"  />
                 </TouchableOpacity>

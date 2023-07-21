@@ -1,25 +1,21 @@
-import { Image, ScrollView,   Keyboard ,StatusBar, Text, View , Modal, TextInput, TouchableOpacity, TouchableWithoutFeedback} from "react-native";
+import { Image, ScrollView,   Keyboard ,StatusBar, Text, View } from "react-native";
 import Headers from "../components/Headers";
 import Bar from "../components/ButtonsBar";
 import Hero from "../components/hero";
 import Movies from "../components/Movies";
 import { useEffect, useState } from "react";
-import { FontAwesome } from '@expo/vector-icons'; 
-import { AntDesign } from '@expo/vector-icons'; 
+
 import Search from "../components/Search";
 import Card from "../components/Card";
 const Home = ({navigation}) => {
     const [open,setOpen]=useState(false)
     const [Popular,setPopular]=useState(null)
-    const [Popular1,setPopular1]=useState(null)
 
     const [Movies1,setMovies1]=useState(null)
 
     const [TopRated,setTopRated]=useState(null)
-    const [TopRated1,setTopRated1]=useState(null)
 
     const [Upcoming,setUpcoming]=useState(null)
-    const [Upcoming1,setUpcoming1]=useState(null)
 
     useEffect(()=>{
         const options = {
@@ -59,36 +55,9 @@ const Home = ({navigation}) => {
     return ( 
     <View className="flex-1 items-start bg-[#1F1C2C]" >
         <StatusBar style="" />
-        {/* <Modal visible={open} >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View className="bg-[#1F1C2C] flex-1">
-                    <TouchableOpacity onPress={()=>setOpen(false)}>
-                        <View className="flex-row items-center justify-center mb-4 mt-4 ml-3">
-                            <AntDesign name="closecircle" size={24} color="white" />
-                            <Text className="text-white ml-3 ">Cancel Serach </Text>
-                        </View>
-                    </TouchableOpacity> 
-                <View className="flex-row items-center justify-center  mt-4 ml-3">
-                        <TextInput className="bg-slate-300 rounded-xl w-3/4  p-2 mr-6" />
-                        <TouchableOpacity>
-                            <FontAwesome name="search" size={28} color="white"  />
-                        </TouchableOpacity>
-                    </View>
-                    <ScrollView horizontal={true}>
-                     { Movies1 ? <View>
-                                    {Movies1.results.map((elem)=>{
-                                    return(<Card navigation={navigation}  data={elem} />)
-                                })}  
-                                </View> : <Text className="text-white">Loading ... </Text> }
-                    
-                    </ScrollView> 
-                </View>
-               
-            </TouchableWithoutFeedback>
-        </Modal>  */}
+    
 
        <Search  className="mt-[80px]" setOpen={setOpen} open={open} setMovies1={setMovies1}/>
-       {/* <Bar setOpen={setOpen} /> */}
        <ScrollView className="mb-4 mt-8">
      {(!Movies1) &&
      <View>
@@ -112,6 +81,3 @@ const Home = ({navigation}) => {
 export default Home;
 
 
-/// action ... 28 
-// Comedy ... 35
-// Horror ... 27
