@@ -53,10 +53,7 @@ const Home = ({navigation}) => {
             .catch(err => console.error(err));
 
 
-            fetch('https://api.themoviedb.org/3/search/movie?query=robot', options)
-            .then(response => response.json())
-            .then(response =>setMovies1(response) )
-            .catch(err => console.error(err));
+           
         
     },[])
     return ( 
@@ -90,13 +87,24 @@ const Home = ({navigation}) => {
             </TouchableWithoutFeedback>
         </Modal>  */}
 
-       <Search  className="mt-[80px]" setOpen={setOpen} open={open}/>
+       <Search  className="mt-[80px]" setOpen={setOpen} open={open} setMovies1={setMovies1}/>
        {/* <Bar setOpen={setOpen} /> */}
        <ScrollView className="mb-4 mt-8">
-        <Hero />
+     {(!Movies1) &&
+     <View>
+            <Hero /> 
        {Popular ? <Movies key={1} navigation={navigation} data={Popular} title="Popular"/> : <Text className="text-white">Loading ...</Text>}
        {TopRated ? <Movies key={2} navigation={navigation}  data={TopRated} title="Top Rated" /> : <Text className="text-white">Loading ...</Text>}
         {Upcoming ? <Movies key={3} navigation={navigation} data={Upcoming} title="Upcoming" /> : <Text className="text-white">Loading ...</Text>}
+     </View>}
+
+     {(Movies1) &&  
+     <ScrollView horizontal={true}>
+     {Movies1.results.map((elem)=>{
+        return(<Card navigation={navigation}  data={elem} />)
+    }) }
+     </ScrollView> }
+        
        </ScrollView>
     </View> );
 }
