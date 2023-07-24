@@ -35,10 +35,10 @@ Get started with MovieFinder today and unlock an entire universe of entertainmen
 📱 Seamless Mobile Experience:
 With a stunning and intuitive user interface, MovieFinder provides a delightful mobile experience on both iOS and Android devices. The app's responsive design ensures that you can enjoy your movie journey anywhere, anytime.
 ## Screenshots
-![Screenshot_1690195070](https://github.com/SifEddine05/MovieApp/assets/77940258/988cc24a-e644-4bc2-ba0b-96cac46581f3)
+![Screenshot_1690195070](https://github.com/SifEddine05/MovieApp/assets/77940258/d61cfaf2-e0e8-4cb7-9946-506e1bebf77c)
+![Screenshot_1690195091](https://github.com/SifEddine05/MovieApp/assets/77940258/95bfbbf7-c37d-464c-8909-ba1c4644ed4e)
+![Screenshot_1690195097](https://github.com/SifEddine05/MovieApp/assets/77940258/32892220-c8ac-4ff0-b665-6f4e70c96ca4)
 
-![Screenshot_1690195091](https://github.com/SifEddine05/MovieApp/assets/77940258/26393339-463f-4b51-ad33-a9d9b5d796db)
-![Screenshot_1690195097](https://github.com/SifEddine05/MovieApp/assets/77940258/5a0d1e8d-79bb-4fb9-a32d-d7f1b90bfe4f)
 
 ## Installation
 
